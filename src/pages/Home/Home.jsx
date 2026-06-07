@@ -1,9 +1,12 @@
-// Home page component
+import ProductList from "../../components/ProductList/ProductList";
+
+// Home page
 function Home() {
   return (
     <div>
       <h1>Welcome to ShoppyGlobe</h1>
-      <p>Home Page</p>
+
+      <ProductList />
     </div>
   );
 }
