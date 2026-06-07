@@ -1,6 +1,7 @@
 import useProducts from "../../hooks/useProducts";
+import ProductItem from "../ProductItem/ProductItem";
 
-// Product list component
+// Product List Component
 function ProductList() {
   const { products, loading, error } = useProducts();
 
@@ -17,20 +18,10 @@ function ProductList() {
       <h2>Products</h2>
 
       {products.map((product) => (
-        <div
+        <ProductItem
           key={product.id}
-          style={{
-            border: "1px solid #cccccc",
-            margin: "10px",
-            padding: "10px",
-          }}
-        >
-          <h3>{product.title}</h3>
-          <p>{product.description}</p>
-          <p>
-            <strong>Price:</strong> ${product.price}
-          </p>
-        </div>
+          product={product}
+        />
       ))}
     </div>
   );
