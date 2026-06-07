@@ -1,10 +1,11 @@
+import Header from "../../components/Header/Header";
 import ProductList from "../../components/ProductList/ProductList";
 
-// Home page
+// Home Page
 function Home() {
   return (
     <div>
-      <h1>Welcome to ShoppyGlobe</h1>
+      <Header />
 
       <ProductList />
     </div>
