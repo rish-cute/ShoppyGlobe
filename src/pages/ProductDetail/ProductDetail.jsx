@@ -1,43 +1,71 @@
-import useProducts from "../../hooks/useProducts";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-// Product list component
-function ProductList() {
-  const { products, loading, error } = useProducts();
+// Product Detail Page
+function ProductDetail() {
+  const { id } = useParams();
 
-  // Loading state
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          `https://dummyjson.com/products/${id}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch product");
+        }
+
+        const data = await response.json();
+
+        setProduct(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
   if (loading) {
-    return <h2>Loading products...</h2>;
+    return <h2>Loading product...</h2>;
   }
 
-  // Error state
   if (error) {
     return <h2>Error: {error}</h2>;
   }
 
   return (
-    <div>
-      <h2>Products</h2>
+    <div style={{ padding: "20px" }}>
+      <h1>{product.title}</h1>
 
-      {products.map((product) => (
-        <div
-          key={product.id}
-          style={{
-            border: "1px solid #cccccc",
-            margin: "10px",
-            padding: "10px",
-          }}
-        >
-          <h3>{product.title}</h3>
+      <img
+        src={product.thumbnail}
+        alt={product.title}
+        width="250"
+      />
 
-          <p>{product.description}</p>
+      <p>{product.description}</p>
 
-          <p>
-            <strong>Price:</strong> ${product.price}
-          </p>
-        </div>
-      ))}
+      <p>
+        <strong>Price:</strong> ${product.price}
+      </p>
+
+      <p>
+        <strong>Category:</strong> {product.category}
+      </p>
+
+      <p>
+        <strong>Rating:</strong> {product.rating}
+      </p>
     </div>
   );
 }
 
-export default ProductList;
+export default ProductDetail;

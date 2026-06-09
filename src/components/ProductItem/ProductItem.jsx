@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 
@@ -27,6 +28,12 @@ function ProductItem({ product }) {
       <p>
         <strong>Price:</strong> ${product.price}
       </p>
+
+      <Link to={`/product/${product.id}`}>
+        <button style={{ marginRight: "10px" }}>
+          View Details
+        </button>
+      </Link>
 
       <button onClick={handleAddToCart}>
         Add To Cart
