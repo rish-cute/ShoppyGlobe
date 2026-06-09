@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   setSearchTerm,
   selectSearchTerm,
@@ -22,6 +24,18 @@ function Header() {
       }}
     >
       <h1>ShoppyGlobe</h1>
+
+      <nav
+        style={{
+          marginBottom: "10px",
+        }}
+      >
+        <Link to="/">Home</Link>
+
+        <span> | </span>
+
+        <Link to="/cart">Cart</Link>
+      </nav>
 
       <input
         type="text"
