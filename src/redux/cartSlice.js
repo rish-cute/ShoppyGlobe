@@ -1,9 +1,13 @@
 // Redux Toolkit function for creating slices
 import { createSlice } from "@reduxjs/toolkit";
 
+// Load cart from localStorage
+const savedCart =
+  JSON.parse(localStorage.getItem("cart")) || [];
+
 // Initial cart state
 const initialState = {
-  items: [],
+  items: savedCart,
 };
 
 const cartSlice = createSlice({
@@ -25,12 +29,22 @@ const cartSlice = createSlice({
           quantity: 1,
         });
       }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(state.items)
+      );
     },
 
     // Remove product completely
     removeFromCart: (state, action) => {
       state.items = state.items.filter(
         (item) => item.id !== action.payload
+      );
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(state.items)
       );
     },
 
@@ -43,6 +57,11 @@ const cartSlice = createSlice({
       if (item) {
         item.quantity += 1;
       }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(state.items)
+      );
     },
 
     // Decrease quantity (minimum 1)
@@ -54,11 +73,18 @@ const cartSlice = createSlice({
       if (item && item.quantity > 1) {
         item.quantity -= 1;
       }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(state.items)
+      );
     },
 
     // Clear cart after order placement
     clearCart: (state) => {
       state.items = [];
+
+      localStorage.removeItem("cart");
     },
   },
 });
