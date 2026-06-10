@@ -49,6 +49,7 @@ function ProductDetail() {
         src={product.thumbnail}
         alt={product.title}
         width="250"
+        loading="lazy"
       />
 
       <p>{product.description}</p>
