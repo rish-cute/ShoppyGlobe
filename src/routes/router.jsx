@@ -1,33 +1,66 @@
 // React Router configuration
 
+import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import Home from "../pages/Home/Home";
-import ProductDetail from "../pages/ProductDetail/ProductDetail";
-import CartPage from "../pages/Cart/CartPage";
-import Checkout from "../pages/Checkout/Checkout";
-import NotFound from "../pages/NotFound/NotFound";
+// Lazy loaded pages
+const Home = lazy(() => import("../pages/Home/Home"));
+const ProductDetail = lazy(() =>
+  import("../pages/ProductDetail/ProductDetail")
+);
+const CartPage = lazy(() =>
+  import("../pages/Cart/CartPage")
+);
+const Checkout = lazy(() =>
+  import("../pages/Checkout/Checkout")
+);
+const NotFound = lazy(() =>
+  import("../pages/NotFound/NotFound")
+);
+
+// Loading component
+const Loader = () => <h2>Loading...</h2>;
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Home />
+      </Suspense>
+    ),
   },
   {
     path: "/product/:id",
-    element: <ProductDetail />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <ProductDetail />
+      </Suspense>
+    ),
   },
   {
     path: "/cart",
-    element: <CartPage />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <CartPage />
+      </Suspense>
+    ),
   },
   {
     path: "/checkout",
-    element: <Checkout />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Checkout />
+      </Suspense>
+    ),
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <NotFound />
+      </Suspense>
+    ),
   },
 ]);
 
