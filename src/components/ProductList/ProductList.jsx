@@ -38,7 +38,7 @@ function ProductList() {
   return (
     <div className="products-container">
       <h2 className="products-heading">
-        Products
+      Products ({filteredProducts.length})
       </h2>
 
       <div className="products-grid">
