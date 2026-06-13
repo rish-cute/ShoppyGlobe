@@ -1,0 +1,11 @@
+.loading-message,
+.error-message {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.error-message {
+  color: #ef4444;
+}

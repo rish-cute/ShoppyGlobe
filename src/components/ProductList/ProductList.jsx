@@ -5,6 +5,7 @@ import useProducts from "../../hooks/useProducts";
 import ProductItem from "../ProductItem/ProductItem";
 
 import "../../styles/ProductList.css";
+import "../../styles/Common.css";
 
 // Product List Component
 function ProductList() {
@@ -13,11 +14,19 @@ function ProductList() {
   const searchTerm = useSelector(selectSearchTerm);
 
   if (loading) {
-    return <h2>Loading products...</h2>;
+  return (
+    <h2 className="loading-message">
+      Loading products...
+    </h2>
+  );
   }
 
   if (error) {
-    return <h2>Error: {error}</h2>;
+  return (
+    <h2 className="error-message">
+      Error: {error}
+    </h2>
+  );
   }
 
   const filteredProducts = products.filter((product) =>

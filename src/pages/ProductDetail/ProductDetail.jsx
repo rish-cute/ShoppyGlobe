@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 
 import "../../styles/ProductDetail.css";
+import "../../styles/Common.css";
 
 // Product Detail Page
 function ProductDetail() {
@@ -41,11 +42,19 @@ function ProductDetail() {
   }, [id]);
 
   if (loading) {
-    return <h2>Loading product...</h2>;
+  return (
+    <h2 className="loading-message">
+      Loading product...
+    </h2>
+  );
   }
 
   if (error) {
-    return <h2>Error: {error}</h2>;
+  return (
+    <h2 className="error-message">
+      Error: {error}
+    </h2>
+  );
   }
 
   const handleAddToCart = () => {
