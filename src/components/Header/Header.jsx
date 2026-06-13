@@ -20,7 +20,9 @@ function Header() {
 
   return (
     <header className="header">
-      <h1 className="logo">ShoppyGlobe</h1>
+      <h1 className="logo">
+      🛒 ShoppyGlobe
+    </h1>
 
       <nav className="nav-links">
         <Link to="/">Home</Link>
