@@ -6,6 +6,8 @@ import {
   selectSearchTerm,
 } from "../../redux/searchSlice";
 
+import "../../styles/Header.css";
+
 // Header Component
 function Header() {
   const dispatch = useDispatch();
@@ -17,36 +19,21 @@ function Header() {
   };
 
   return (
-    <header
-      style={{
-        padding: "15px",
-        borderBottom: "1px solid #cccccc",
-      }}
-    >
-      <h1>ShoppyGlobe</h1>
+    <header className="header">
+      <h1 className="logo">ShoppyGlobe</h1>
 
-      <nav
-        style={{
-          marginBottom: "10px",
-        }}
-      >
+      <nav className="nav-links">
         <Link to="/">Home</Link>
-
-        <span> | </span>
 
         <Link to="/cart">Cart</Link>
       </nav>
 
       <input
+        className="search-box"
         type="text"
         placeholder="Search products..."
         value={searchTerm}
         onChange={handleSearchChange}
-        style={{
-          marginTop: "10px",
-          padding: "8px",
-          width: "300px",
-        }}
       />
     </header>
   );

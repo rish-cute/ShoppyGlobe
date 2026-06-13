@@ -4,6 +4,8 @@ import { selectSearchTerm } from "../../redux/searchSlice";
 import useProducts from "../../hooks/useProducts";
 import ProductItem from "../ProductItem/ProductItem";
 
+import "../../styles/ProductList.css";
+
 // Product List Component
 function ProductList() {
   const { products, loading, error } = useProducts();
@@ -25,15 +27,19 @@ function ProductList() {
   );
 
   return (
-    <div>
-      <h2>Products</h2>
+    <div className="products-container">
+      <h2 className="products-heading">
+        Products
+      </h2>
 
-      {filteredProducts.map((product) => (
-        <ProductItem
-          key={product.id}
-          product={product}
-        />
-      ))}
+      <div className="products-grid">
+        {filteredProducts.map((product) => (
+          <ProductItem
+            key={product.id}
+            product={product}
+          />
+        ))}
+      </div>
     </div>
   );
 }

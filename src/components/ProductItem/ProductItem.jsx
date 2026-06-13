@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 
+import "../../styles/ProductItem.css";
+
 // Reusable Product Item Component
 function ProductItem({ product }) {
   const dispatch = useDispatch();
 
-  // Add product to cart
   const handleAddToCart = () => {
     dispatch(addToCart(product));
 
@@ -14,30 +15,33 @@ function ProductItem({ product }) {
   };
 
   return (
-    <div
-      style={{
-        border: "1px solid #cccccc",
-        padding: "10px",
-        margin: "10px",
-      }}
-    >
-      <h3>{product.title}</h3>
+    <div className="product-card">
+      <h3 className="product-title">
+        {product.title}
+      </h3>
 
-      <p>{product.description}</p>
-
-      <p>
-        <strong>Price:</strong> ${product.price}
+      <p className="product-description">
+        {product.description}
       </p>
 
-      <Link to={`/product/${product.id}`}>
-        <button style={{ marginRight: "10px" }}>
-          View Details
-        </button>
-      </Link>
+      <p className="product-price">
+        ${product.price}
+      </p>
 
-      <button onClick={handleAddToCart}>
-        Add To Cart
-      </button>
+      <div className="button-group">
+        <Link to={`/product/${product.id}`}>
+          <button className="details-btn">
+            View Details
+          </button>
+        </Link>
+
+        <button
+          className="cart-btn"
+          onClick={handleAddToCart}
+        >
+          Add To Cart
+        </button>
+      </div>
     </div>
   );
 }
