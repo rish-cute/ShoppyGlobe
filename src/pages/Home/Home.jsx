@@ -1,5 +1,6 @@
 import Header from "../../components/Header/Header";
 import ProductList from "../../components/ProductList/ProductList";
+import Footer from "../../components/Footer/Footer";
 
 // Home Page
 function Home() {
@@ -8,6 +9,8 @@ function Home() {
       <Header />
 
       <ProductList />
+
+      <Footer />
     </div>
   );
 }
